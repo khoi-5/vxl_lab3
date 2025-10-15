@@ -24,6 +24,7 @@
 /* USER CODE BEGIN Includes */
 #include "software_timer.h"
 #include "button.h"
+#include "fsm_auto.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -95,20 +96,12 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  //setTimer(0, 1000);
+
 
   while (1)
   {
     /* USER CODE END WHILE */
-	  if (isButton1Pressed(0)  == 1){
-		  HAL_GPIO_TogglePin(SEG_5_GPIO_Port, SEG_5_Pin);
-	  }
-	  if (isButton1Pressed(1)  == 1){
-	  		  HAL_GPIO_TogglePin(SEG_5_GPIO_Port, SEG_5_Pin);
-	  	  }
-	  if (isButton1Pressed(2)  == 1){
-	  		  HAL_GPIO_TogglePin(SEG_5_GPIO_Port, SEG_5_Pin);
-	  	  }
+	  fsm_auto_run();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

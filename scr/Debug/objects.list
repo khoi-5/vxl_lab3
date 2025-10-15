@@ -1,4 +1,8 @@
 "./Core/Src/button.o"
+"./Core/Src/fsm_auto.o"
+"./Core/Src/global.o"
+"./Core/Src/led7_segment.o"
+"./Core/Src/light_traffic.o"
 "./Core/Src/main.o"
 "./Core/Src/software_timer.o"
 "./Core/Src/stm32f1xx_hal_msp.o"
