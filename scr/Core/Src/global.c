@@ -7,7 +7,7 @@
 
 #include "global.h"
 
-int status = 0;
+int status = INIT;
 int count = 1;
 int counter1 = 0;
 int counter2 = 0;

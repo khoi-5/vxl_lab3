@@ -14,7 +14,6 @@
 void fsm_auto_run() {
 	switch (status) {
 	case INIT:
-		HAL_GPIO_WritePin(SEG_5_GPIO_Port, SEG_5_Pin, SET);
 		init();
 		status = AUTO_RED;
 		setTimer(0, 1000);
