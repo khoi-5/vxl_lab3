@@ -18,5 +18,4 @@ void blinking_led_yellow();
 void init();
 void init_time();
 
-
 #endif /* INC_LIGHT_TRAFFIC_H_ */

@@ -5,14 +5,16 @@
  *      Author: DELL
  */
 
-
+#include  "main.h"
 #include "fsm_auto.h"
 #include "led7_segment.h"
 #include "light_traffic.h"
 
+
 void fsm_auto_run() {
 	switch (status) {
 	case INIT:
+		HAL_GPIO_WritePin(SEG_5_GPIO_Port, SEG_5_Pin, SET);
 		init();
 		status = AUTO_RED;
 		setTimer(0, 1000);
@@ -51,10 +53,9 @@ void fsm_auto_run() {
 		}
 		if (isButton1Pressed(0) == 1) {
 			init();
-			status = AUTO_RED;
+			status = MAN_RED;
 			setTimer(0, 1000);
-			//setTimer(1, 250);
-			//setTimer(2, 250);
+
 		}
 		break;
 	case AUTO_YELLOW_MAIN:
@@ -72,10 +73,9 @@ void fsm_auto_run() {
 		}
 		if (isButton1Pressed(0) == 1) {
 			init();
-			status = AUTO_RED;
+			status = MAN_RED;
 			setTimer(0, 1000);
-			//setTimer(1, 250);
-			//setTimer(2, 250);
+
 		}
 		break;
 	case AUTO_YELLOW:
@@ -93,13 +93,13 @@ void fsm_auto_run() {
 		}
 		if (isButton1Pressed(0) == 1) {
 			init();
-			status = AUTO_RED;
+			status = MAN_RED;
 			setTimer(0, 1000);
-			//setTimer(1, 250);
-			//setTimer(2, 250);
+
 		}
 		break;
 	default:
 		break;
 	}
 }
+

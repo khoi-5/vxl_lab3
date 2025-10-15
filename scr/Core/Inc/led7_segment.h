@@ -25,5 +25,4 @@ void set_7SEG_Y_left(const GPIO_PinState *L_LEDS_Y_state);
 void displaySetting(int time);
 void displaySettingX(int time);
 
-
 #endif /* INC_LED7_SEGMENT_H_ */

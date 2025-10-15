@@ -1,6 +1,6 @@
-led7_segment.c:24:6:set_7SEG_X	24	static
-led7_segment.c:32:6:set_7SEG_X_left	24	static
-led7_segment.c:40:6:set_7SEG_Y	24	static
-led7_segment.c:48:6:set_7SEG_Y_left	24	static
-led7_segment.c:56:6:displaySetting	16	static
-led7_segment.c:71:6:displaySettingX	16	static
+led7_segment.c:23:6:set_7SEG_X	24	static
+led7_segment.c:31:6:set_7SEG_X_left	24	static
+led7_segment.c:39:6:set_7SEG_Y	24	static
+led7_segment.c:47:6:set_7SEG_Y_left	24	static
+led7_segment.c:55:6:displaySetting	16	static
+led7_segment.c:70:6:displaySettingX	16	static

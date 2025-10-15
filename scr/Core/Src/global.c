@@ -5,7 +5,6 @@
  *      Author: DELL
  */
 
-
 #include "global.h"
 
 int status = 0;

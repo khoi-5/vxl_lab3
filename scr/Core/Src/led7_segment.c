@@ -5,7 +5,6 @@
  *      Author: DELL
  */
 
-
 #include "led7_segment.h"
 #include "main.h"
 
