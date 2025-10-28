@@ -8,10 +8,20 @@
 #ifndef INC_GLOBAL_H_
 #define INC_GLOBAL_H_
 
+//cac file.h co ban
+#include "main.h"
 #include "software_timer.h"
 #include "button.h"
-#include "main.h"
 
+// cac file.h cua traffic light va led 7 doan
+#include "light_traffic.h"
+#include "led7_segment.h"
+
+//cac file.h fsm
+#include "fsm_auto.h"
+
+
+//che do mac dinh
 #define INIT 1
 #define AUTO_RED 2
 #define AUTO_GREEN 3
