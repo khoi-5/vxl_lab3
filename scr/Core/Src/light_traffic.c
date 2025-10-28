@@ -14,8 +14,7 @@
 #define NUM_LEDS      12
 #define NUM_PATTERNS  4
 
-// Nếu phần cứng active-high, giữ như dưới.
-// Nếu là active-low (common anode), có thể đổi ACTIVE/INACTIVE tương ứng.
+
 #define ACTIVE   GPIO_PIN_SET
 #define INACTIVE GPIO_PIN_RESET
 

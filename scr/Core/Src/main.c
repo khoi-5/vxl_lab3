@@ -102,9 +102,6 @@ int main(void)
   {
     /* USER CODE END WHILE */
 
-
-
-	 fsm_auto_run();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
