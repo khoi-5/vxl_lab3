@@ -27,23 +27,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 00000029  00000000  00000000  000201d8  2**0
                   CONTENTS, READONLY
- 12 .debug_info   00009c10  00000000  00000000  00020201  2**0
+ 12 .debug_info   00009e91  00000000  00000000  00020201  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 00001bcd  00000000  00000000  00029e11  2**0
+ 13 .debug_abbrev 00001c29  00000000  00000000  0002a092  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 00000a80  00000000  00000000  0002b9e0  2**3
+ 14 .debug_aranges 00000a80  00000000  00000000  0002bcc0  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_ranges 00000970  00000000  00000000  0002c460  2**3
+ 15 .debug_ranges 00000970  00000000  00000000  0002c740  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  00016daa  00000000  00000000  0002cdd0  2**0
+ 16 .debug_macro  00016e0a  00000000  00000000  0002d0b0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   0000bae1  00000000  00000000  00043b7a  2**0
+ 17 .debug_line   0000bb79  00000000  00000000  00043eba  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    00082792  00000000  00000000  0004f65b  2**0
+ 18 .debug_str    00082792  00000000  00000000  0004fa33  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000053  00000000  00000000  000d1ded  2**0
+ 19 .comment      00000053  00000000  00000000  000d21c5  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  0000293c  00000000  00000000  000d1e40  2**2
+ 20 .debug_frame  0000293c  00000000  00000000  000d2218  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -292,9 +292,9 @@ void getKeyInput() {
  80002c0:	200001f4 	.word	0x200001f4
 
 080002c4 <fsm_auto_run>:
+
 #include "fsm_auto.h"
-#include "led7_segment.h"
-#include "light_traffic.h"
+
 
 
 void fsm_auto_run() {

@@ -5,10 +5,9 @@
  *      Author: DELL
  */
 
-#include  "main.h"
+
 #include "fsm_auto.h"
-#include "led7_segment.h"
-#include "light_traffic.h"
+
 
 
 void fsm_auto_run() {

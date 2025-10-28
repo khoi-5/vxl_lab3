@@ -7,8 +7,7 @@
 
 
 #include "light_traffic.h"
-#include "global.h"
-#include "main.h"
+
 
 
 // ====== Config ======

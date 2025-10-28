@@ -6,7 +6,7 @@
  */
 
 #include "led7_segment.h"
-#include "main.h"
+
 
 GPIO_TypeDef *SEG_PORTS[14] = { SEG_0_GPIO_Port, SEG_1_GPIO_Port,
 SEG_2_GPIO_Port, SEG_3_GPIO_Port, SEG_4_GPIO_Port, SEG_5_GPIO_Port,

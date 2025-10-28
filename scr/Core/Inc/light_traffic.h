@@ -8,6 +8,8 @@
 #ifndef INC_LIGHT_TRAFFIC_H_
 #define INC_LIGHT_TRAFFIC_H_
 
+#include "global.h"
+
 void led_red_and_yellow();
 void led_yellow_and_red();
 void led_red_and_green();
