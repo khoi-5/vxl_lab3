@@ -20,13 +20,15 @@
 //cac file.h fsm
 #include "fsm_auto.h"
 
+//SCAN SPEED
+#define SCAN 100
 
 //che do mac dinh
 #define INIT 1
-#define AUTO_RED 2
-#define AUTO_GREEN 3
-#define AUTO_YELLOW_MAIN 4
-#define AUTO_YELLOW 5
+#define RED_GREEN 2
+#define RED_YELLOW 3
+#define GREEN_RED 4
+#define YELLOW_RED 5
 
 #define MAN_RED 12
 #define MAN_GREEN 13
@@ -42,11 +44,27 @@ extern int status;
 extern int count;
 extern int counter1;
 extern int counter2;
-extern int time_red;
-extern int time_green;
-extern int time_yellow;
-extern int time_red_new;
-extern int time_green_new;
-extern int time_yellow_new;
+
+
+// thoi gian cua truc x
+extern int time_red_x;
+extern int time_green_x;
+extern int time_yellow_x;
+extern int time_red_new_x;
+extern int time_green_new_x;
+extern int time_yellow_new_x;
+
+// thoi gian cua truc x
+extern int time_red_y;
+extern int time_green_y;
+extern int time_yellow_y;
+extern int time_red_new_y;
+extern int time_green_new_y;
+extern int time_yellow_new_y;
+
+//bien time hien tai
+extern int current_time_x;
+extern int current_time_y;
+
 
 #endif /* INC_GLOBAL_H_ */

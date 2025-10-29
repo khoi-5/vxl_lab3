@@ -40,8 +40,8 @@ GPIO_PinState LEDS_7SEG_state[10][7] = {
 // ----------------------
 void set_7SEG_X_left(const GPIO_PinState *L_LEDS_X_state) {
     // Bật bên trái (EN0), tắt bên phải (EN1)
-    HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, SET);
-    HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, RESET);
+    HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, RESET);
+    HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, SET);
     for (int i = 0; i < 7; i++) {
         HAL_GPIO_WritePin(SEG_PORTS[i], SEG_PINS[i], L_LEDS_X_state[i]);
     }
@@ -49,8 +49,8 @@ void set_7SEG_X_left(const GPIO_PinState *L_LEDS_X_state) {
 
 void set_7SEG_X(const GPIO_PinState *L_LEDS_X_state) {
     // Bật bên phải (EN1), tắt bên trái (EN0)
-    HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, RESET);
-    HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, SET);
+    HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, SET);
+    HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, RESET);
     for (int i = 0; i < 7; i++) {
         HAL_GPIO_WritePin(SEG_PORTS[i], SEG_PINS[i], L_LEDS_X_state[i]);
     }
@@ -61,8 +61,8 @@ void set_7SEG_X(const GPIO_PinState *L_LEDS_X_state) {
 // ----------------------
 void set_7SEG_Y_left(const GPIO_PinState *L_LEDS_Y_state) {
     // Bật bên trái (EN2), tắt bên phải (EN3)
-    HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);
-    HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, RESET);
+    HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, RESET);
+    HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, SET);
     for (int i = 0; i < 7; i++) {
         HAL_GPIO_WritePin(SEG_PORTS[i + 7], SEG_PINS[i + 7], L_LEDS_Y_state[i]);
     }
@@ -70,8 +70,8 @@ void set_7SEG_Y_left(const GPIO_PinState *L_LEDS_Y_state) {
 
 void set_7SEG_Y(const GPIO_PinState *L_LEDS_Y_state) {
     // Bật bên phải (EN3), tắt bên trái (EN2)
-    HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, RESET);
-    HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, SET);
+    HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);
+    HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, RESET);
     for (int i = 0; i < 7; i++) {
         HAL_GPIO_WritePin(SEG_PORTS[i + 7], SEG_PINS[i + 7], L_LEDS_Y_state[i]);
     }
@@ -81,7 +81,7 @@ void set_7SEG_Y(const GPIO_PinState *L_LEDS_Y_state) {
 // Multiplex hiển thị (00..99)
 // ----------------------
 // counter1/counter2 là biến toàn cục bạn đã có sẵn
-void displaySetting(int time) {          // Cụm Y
+void displaySetting_Y(int time) {          // Cụm Y
     if (time < 0) time = 0;
     if (time > 99) time = 99;
 
@@ -89,10 +89,12 @@ void displaySetting(int time) {          // Cụm Y
     case 0:
         set_7SEG_Y_left(LEDS_7SEG_state[time / 10]); // hàng chục bên trái
         counter1 = 1;
+
         break;
     case 1:
         set_7SEG_Y(LEDS_7SEG_state[time % 10]);      // hàng đơn vị bên phải
         counter1 = 0;
+
         break;
     default:
         counter1 = 0;
@@ -100,25 +102,40 @@ void displaySetting(int time) {          // Cụm Y
     }
 }
 
-void displaySettingX(int time) {         // Cụm X
+void displaySetting_X(int time) {         // Cụm X
     if (time < 0) time = 0;
     if (time > 99) time = 99;
 
+
     switch (counter2) {
     case 0:
+
         set_7SEG_X_left(LEDS_7SEG_state[time / 10]); // hàng chục bên trái
         counter2 = 1;
+
         break;
     case 1:
+
         set_7SEG_X(LEDS_7SEG_state[time % 10]);      // hàng đơn vị bên phải
         counter2 = 0;
+
         break;
     default:
         counter2 = 0;
         break;
     }
 }
-
+void display_7led(int time1, int time2){
+	current_time_x = time1;
+	current_time_y = time2;
+}
+void timer9_for_led_7(){
+	if (timer_flag[9] == 1){
+		displaySetting_X(current_time_x);
+		displaySetting_Y(current_time_y);
+		setTimer(9, SCAN);
+	}
+}
 
 void display_set_X(uint8_t v) {
     if (v > 99) v = 99;
@@ -139,6 +156,6 @@ void seg_scan_tick(void) {
     uint8_t y = s_disp_Y;
 
     // Hàm quét bạn đã có (tự tách chục/đơn vị & bật EN trái/phải)
-    displaySettingX(x);  // dùng s_counter_x bên trong hoặc truyền vào
-    displaySetting(y);
+    displaySetting_X(x);  // dùng s_counter_x bên trong hoặc truyền vào
+    displaySetting_Y(y);
 }

@@ -10,9 +10,7 @@
 
 #include "global.h"
 
-extern int red_time;
-extern int green_time;
-extern int yellow_time;
+
 
 static volatile uint8_t s_disp_X = 0;
 static volatile uint8_t s_disp_Y = 0;
@@ -29,9 +27,10 @@ void set_7SEG_X(const GPIO_PinState *L_LEDS_X_state);
 void set_7SEG_X_left(const GPIO_PinState *L_LEDS_X_state);
 void set_7SEG_Y(const GPIO_PinState *L_LEDS_Y_state);
 void set_7SEG_Y_left(const GPIO_PinState *L_LEDS_Y_state);
-void displaySetting(int time);
-void displaySettingX(int time);
-
+void displaySetting_Y(int time);
+void displaySetting_X(int time);
+void display_7led(int time1, int time2);
+void timer9_for_led_7();
 
 
 void display_set_X(uint8_t v);

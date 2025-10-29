@@ -99,12 +99,15 @@ int main(void)
   /* USER CODE BEGIN WHILE */
 
 
+
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
 	  fsm_auto_run();
+	  timer9_for_led_7();
+
   }
   /* USER CODE END 3 */
 }
@@ -253,7 +256,6 @@ static void MX_GPIO_Init(void)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 	timerRun();
 	getKeyInput();
-
 }
 /* USER CODE END 4 */
 

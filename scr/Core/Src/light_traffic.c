@@ -68,9 +68,12 @@ static inline void clear_all_leds(void) {
 
 // ====== Public APIs ======
 void init_time(void) {
-    time_red    = 5;
-    time_green  = 3;
-    time_yellow = 2;
+    time_red_x    = 5;
+    time_green_x  = 3;
+    time_yellow_x = 2;
+    time_red_y    = 5;
+    time_green_y  = 3;
+    time_yellow_y = 2;
 }
 
 void init(void) {
