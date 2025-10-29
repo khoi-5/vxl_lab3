@@ -22,6 +22,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "global.h"
 #include "software_timer.h"
 #include "button.h"
 #include "fsm_auto.h"
