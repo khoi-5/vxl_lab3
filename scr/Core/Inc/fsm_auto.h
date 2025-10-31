@@ -11,6 +11,6 @@
 #include "global.h"
 
 void fsm_auto_run();
-
+void set_counter_for_traffic_light(int time1, int time2);
 
 #endif /* INC_FSM_AUTO_H_ */

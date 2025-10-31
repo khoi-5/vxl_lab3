@@ -66,5 +66,8 @@ extern int time_yellow_new_y;
 extern int current_time_x;
 extern int current_time_y;
 
+extern int count_x;
+extern int count_y;
+
 
 #endif /* INC_GLOBAL_H_ */

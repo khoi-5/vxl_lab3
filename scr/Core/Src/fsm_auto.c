@@ -7,81 +7,98 @@
 
 
 #include "fsm_auto.h"
+void fsm_auto_run();
+void set_counter_for_traffic_light(int time1, int time2){
+	count_x = time1;
+	count_y = time2;
+}
 
 
 void fsm_auto_run(void) {
     switch (status) {
     case INIT:
         init();
-        init_time();
+        setTimer(9, SCAN);
+
         status = RED_GREEN;
         setTimer(0, 1000);
         setTimer(1, time_green_y * 1000);
-        setTimer(9, SCAN);
-        display_7led(time_red_x, time_green_y);
+        set_counter_for_traffic_light(time_red_x, time_green_y);
+        display_7led(count_x, count_y);
+
         break;
 
-    case RED_GREEN: // X đỏ, Y xanh
+    case RED_GREEN:
         led_red_and_green();
 
         if (timer_flag[0]) {
-            if (time_red_x   > 0) time_red_x--;
-            if (time_green_y > 0) time_green_y--;
-            display_7led(time_red_x, time_green_y);
-            // cập nhật led 7-seg
+            if (count_x   > 0) count_x--;
+            if (count_y > 0) count_y--;
+            display_7led(count_x, count_y);
             setTimer(0, 1000);
         }
-        if (timer_flag[1]) {    // hết pha Y xanh -> sang Y vàng
+        if (timer_flag[1]) {
             status = RED_YELLOW;
+            setTimer(0, 1000);
             setTimer(1, time_yellow_y * 1000);
-            display_7led(time_red_x, time_yellow_y);
-            // refresh ngay khi chuyển pha
+            set_counter_for_traffic_light(time_yellow_y, time_yellow_y);
+            display_7led(count_x, count_y);
         }
         break;
 
-    case RED_YELLOW: // X đỏ, Y vàng
+    case RED_YELLOW:
         led_red_and_yellow();
 
         if (timer_flag[0]) {
-            if (time_red_x    > 0) time_red_x--;
-            if (time_yellow_y > 0) time_yellow_y--;
-            display_7led(time_red_x, time_yellow_y);
+            if (count_x   > 0) count_x--;
+            if (count_y > 0) count_y--;
+            display_7led(count_x, count_y);
             setTimer(0, 1000);
         }
-        if (timer_flag[1]) {    // hết Y vàng -> sang X xanh
+        if (timer_flag[1]) {
             status = GREEN_RED;
-            display_7led(time_green_x, time_red_y);
+            setTimer(0, 1000);
             setTimer(1, time_green_x * 1000);
+            set_counter_for_traffic_light(time_green_x, time_red_x);
+            display_7led(count_x, count_y);
+
         }
         break;
 
-    case GREEN_RED: // X xanh, Y đỏ
+    case GREEN_RED:
         led_green_and_red();
 
         if (timer_flag[0]) {
-            if (time_green_x > 0) time_green_x--;
-            if (time_red_y   > 0) time_red_y--;
-            display_7led(time_green_x, time_red_y);
+            if (count_x   > 0) count_x--;
+            if (count_y > 0) count_y--;
+            display_7led(count_x, count_y);
             setTimer(0, 1000);
         }
-        if (timer_flag[1]) {    // hết X xanh -> sang X vàng
+        if (timer_flag[1]) {
             status = YELLOW_RED;
-            display_7led(time_yellow_x, time_red_y);
+            setTimer(0, 1000);
             setTimer(1, time_yellow_x * 1000);
+            set_counter_for_traffic_light(time_yellow_x, time_yellow_x);
+            display_7led(count_x, count_y);
+
         }
         break;
 
-    case YELLOW_RED: // X vàng, Y đỏ
+    case YELLOW_RED:
         led_yellow_and_red();
 
         if (timer_flag[0]) {
-            if (time_yellow_x > 0) time_yellow_x--;
-            if (time_red_y    > 0) time_red_y--;
-            display_7led(time_yellow_x, time_red_y);
+            if (count_x   > 0) count_x--;
+            if (count_y > 0) count_y--;
+            display_7led(count_x, count_y);
             setTimer(0, 1000);
         }
-        if (timer_flag[1]) {    // hết X vàng -> vòng lại Y xanh
-            status = INIT;
+        if (timer_flag[1]) {
+            status = RED_GREEN;
+            setTimer(0, 1000);
+            setTimer(1, time_green_y * 1000);
+            set_counter_for_traffic_light(time_red_x, time_green_y);
+            display_7led(count_x, count_y);
         }
         break;
 
