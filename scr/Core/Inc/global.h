@@ -30,9 +30,14 @@
 #define GREEN_RED 4
 #define YELLOW_RED 5
 
-#define MAN_RED 12
-#define MAN_GREEN 13
-#define MAN_YELLOW 14
+#define MAN_RED 1200
+#define MAN_GREEN 1300
+#define MAN_YELLOW 1400
+
+#define MAN_RED_GREEN 12
+#define MAN_RED_YELLOW 13
+#define MAN_GREEN_RED 14
+#define MAN_YELLOW_RED 15
 
 #define SET_INIT 22
 #define SET_RED 23

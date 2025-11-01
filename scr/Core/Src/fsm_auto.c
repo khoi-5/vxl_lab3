@@ -24,7 +24,6 @@ void fsm_auto_run(void) {
         setTimer(0, 1000);
         setTimer(1, time_green_y * 1000);
         set_counter_for_traffic_light(time_red_x, time_green_y);
-        display_7led(count_x, count_y);
 
         break;
 
@@ -42,7 +41,6 @@ void fsm_auto_run(void) {
             setTimer(0, 1000);
             setTimer(1, time_yellow_y * 1000);
             set_counter_for_traffic_light(time_yellow_y, time_yellow_y);
-            display_7led(count_x, count_y);
         }
         break;
 
@@ -60,7 +58,6 @@ void fsm_auto_run(void) {
             setTimer(0, 1000);
             setTimer(1, time_green_x * 1000);
             set_counter_for_traffic_light(time_green_x, time_red_x);
-            display_7led(count_x, count_y);
 
         }
         break;
@@ -79,7 +76,6 @@ void fsm_auto_run(void) {
             setTimer(0, 1000);
             setTimer(1, time_yellow_x * 1000);
             set_counter_for_traffic_light(time_yellow_x, time_yellow_x);
-            display_7led(count_x, count_y);
 
         }
         break;
@@ -98,7 +94,6 @@ void fsm_auto_run(void) {
             setTimer(0, 1000);
             setTimer(1, time_green_y * 1000);
             set_counter_for_traffic_light(time_red_x, time_green_y);
-            display_7led(count_x, count_y);
         }
         break;
 

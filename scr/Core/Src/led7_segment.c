@@ -131,8 +131,8 @@ void display_7led(int time1, int time2){
 }
 void timer9_for_led_7(){
 	if (timer_flag[9] == 1){
-		displaySetting_X(current_time_x);
-		displaySetting_Y(current_time_y);
+		displaySetting_X(count_x);
+		displaySetting_Y(count_y);
 		setTimer(9, SCAN);
 	}
 }
