@@ -31,6 +31,7 @@ void displaySetting_Y(int time);
 void displaySetting_X(int time);
 void display_7led(int time1, int time2);
 void timer9_for_led_7();
+void set_counter_for_traffic_light(int time1, int time2);
 
 
 void display_set_X(uint8_t v);

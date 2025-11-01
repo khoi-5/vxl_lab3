@@ -137,6 +137,11 @@ void timer9_for_led_7(){
 	}
 }
 
+void set_counter_for_traffic_light(int time1, int time2){
+	count_x = time1;
+	count_y = time2;
+}
+
 void display_set_X(uint8_t v) {
     if (v > 99) v = 99;
     s_disp_X = v;

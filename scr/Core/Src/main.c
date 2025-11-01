@@ -26,6 +26,7 @@
 #include "software_timer.h"
 #include "button.h"
 #include "fsm_auto.h"
+#include "fsm_maunal.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -106,6 +107,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 	  fsm_auto_run();
+	  fsm_manual_run();
 	  timer9_for_led_7();
 
   }

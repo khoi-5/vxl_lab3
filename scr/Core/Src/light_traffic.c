@@ -78,6 +78,8 @@ void init_time(void) {
 
 void init(void) {
     clear_all_leds();
+    count_x=0;
+    count_y=0;
 }
 
 void led_red_and_green(void) {
@@ -96,13 +98,16 @@ void led_yellow_and_red(void) {
     set_LEDS(LEDS_state[1]);
 }
 
+// ====== Blink theo từng màu toàn ngã tư ======
+// RED  = 3, 6, 9, 12
 void blinking_led_red(void) {
-    HAL_GPIO_TogglePin(LED_2_GPIO_Port,  LED_2_Pin);
-    HAL_GPIO_TogglePin(LED_5_GPIO_Port,  LED_5_Pin);
-    HAL_GPIO_TogglePin(LED_8_GPIO_Port,  LED_8_Pin);
-    HAL_GPIO_TogglePin(LED_11_GPIO_Port, LED_11_Pin);
+    HAL_GPIO_TogglePin(LED_3_GPIO_Port,  LED_3_Pin);
+    HAL_GPIO_TogglePin(LED_6_GPIO_Port,  LED_6_Pin);
+    HAL_GPIO_TogglePin(LED_9_GPIO_Port,  LED_9_Pin);
+    HAL_GPIO_TogglePin(LED_12_GPIO_Port, LED_12_Pin);
 }
 
+// GREEN = 1, 4, 7, 10 (đang đúng)
 void blinking_led_green(void) {
     HAL_GPIO_TogglePin(LED_1_GPIO_Port,  LED_1_Pin);
     HAL_GPIO_TogglePin(LED_4_GPIO_Port,  LED_4_Pin);
@@ -110,9 +115,42 @@ void blinking_led_green(void) {
     HAL_GPIO_TogglePin(LED_10_GPIO_Port, LED_10_Pin);
 }
 
+// YELLOW = 2, 5, 8, 11
 void blinking_led_yellow(void) {
-    HAL_GPIO_TogglePin(LED_3_GPIO_Port,  LED_3_Pin);
+    HAL_GPIO_TogglePin(LED_2_GPIO_Port,  LED_2_Pin);
+    HAL_GPIO_TogglePin(LED_5_GPIO_Port,  LED_5_Pin);
+    HAL_GPIO_TogglePin(LED_8_GPIO_Port,  LED_8_Pin);
+    HAL_GPIO_TogglePin(LED_11_GPIO_Port, LED_11_Pin);
+}
+// ====== Blink theo cặp X/Y ======
+
+void blinking_red_x_green_y(void) {
     HAL_GPIO_TogglePin(LED_6_GPIO_Port,  LED_6_Pin);
-    HAL_GPIO_TogglePin(LED_9_GPIO_Port,  LED_9_Pin);
-    HAL_GPIO_TogglePin(LED_12_GPIO_Port, LED_12_Pin);
+    HAL_GPIO_TogglePin(LED_12_GPIO_Port,  LED_12_Pin);
+    HAL_GPIO_TogglePin(LED_1_GPIO_Port,  LED_1_Pin);
+    HAL_GPIO_TogglePin(LED_7_GPIO_Port, LED_7_Pin);
+}
+
+// đỏ X – vàng Y  -> X: (3,9), Y: (5,11)
+void blinking_red_x_yellow_y(void) {
+    HAL_GPIO_TogglePin(LED_6_GPIO_Port,  LED_6_Pin);
+    HAL_GPIO_TogglePin(LED_12_GPIO_Port,  LED_12_Pin);
+    HAL_GPIO_TogglePin(LED_2_GPIO_Port,  LED_2_Pin);
+    HAL_GPIO_TogglePin(LED_8_GPIO_Port, LED_8_Pin);
+}
+
+// xanh X – đỏ Y  -> X: (1,7), Y: (6,12)
+void blinking_green_x_red_y(void) {
+    HAL_GPIO_TogglePin(LED_4_GPIO_Port,  LED_4_Pin);
+    HAL_GPIO_TogglePin(LED_10_GPIO_Port,  LED_10_Pin);
+    HAL_GPIO_TogglePin(LED_3_GPIO_Port,  LED_3_Pin);
+    HAL_GPIO_TogglePin(LED_9_GPIO_Port, LED_9_Pin);
+}
+
+// vàng X – đỏ Y  -> X: (2,8), Y: (6,12)
+void blinking_yellow_x_red_y(void) {
+    HAL_GPIO_TogglePin(LED_5_GPIO_Port,  LED_5_Pin);
+    HAL_GPIO_TogglePin(LED_11_GPIO_Port,  LED_11_Pin);
+    HAL_GPIO_TogglePin(LED_3_GPIO_Port,  LED_3_Pin);
+    HAL_GPIO_TogglePin(LED_9_GPIO_Port, LED_9_Pin);
 }

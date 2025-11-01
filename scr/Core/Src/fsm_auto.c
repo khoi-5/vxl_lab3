@@ -7,10 +7,15 @@
 
 
 #include "fsm_auto.h"
-void fsm_auto_run();
-void set_counter_for_traffic_light(int time1, int time2){
-	count_x = time1;
-	count_y = time2;
+
+
+void button0_to_change_to_manual(){
+	if (isButton1Pressed(0) == 1) {
+		init();
+		status = MAN_RED_GREEN;
+		setTimer(0, 100000);
+		setTimer(2, 250);
+	}
 }
 
 
@@ -42,6 +47,7 @@ void fsm_auto_run(void) {
             setTimer(1, time_yellow_y * 1000);
             set_counter_for_traffic_light(time_yellow_y, time_yellow_y);
         }
+        button0_to_change_to_manual();
         break;
 
     case RED_YELLOW:
@@ -60,6 +66,7 @@ void fsm_auto_run(void) {
             set_counter_for_traffic_light(time_green_x, time_red_x);
 
         }
+        button0_to_change_to_manual();
         break;
 
     case GREEN_RED:
@@ -78,6 +85,7 @@ void fsm_auto_run(void) {
             set_counter_for_traffic_light(time_yellow_x, time_yellow_x);
 
         }
+        button0_to_change_to_manual();
         break;
 
     case YELLOW_RED:
@@ -95,6 +103,7 @@ void fsm_auto_run(void) {
             setTimer(1, time_green_y * 1000);
             set_counter_for_traffic_light(time_red_x, time_green_y);
         }
+        button0_to_change_to_manual();
         break;
 
     default:

@@ -74,5 +74,5 @@ extern int current_time_y;
 extern int count_x;
 extern int count_y;
 
-
+int inc99(int v);
 #endif /* INC_GLOBAL_H_ */

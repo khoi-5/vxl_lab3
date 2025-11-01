@@ -37,3 +37,9 @@ int current_time_y = 0;
 int count_x=0;
 int count_y=0;
 
+int inc99(int v){
+    v++;
+    if (v > 99) v = 1;
+    return v;
+}
+

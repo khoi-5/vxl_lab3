@@ -17,6 +17,10 @@ void led_green_and_red();
 void blinking_led_red();
 void blinking_led_green();
 void blinking_led_yellow();
+void blinking_red_x_green_y();
+void blinking_red_x_yellow_y();
+void blinking_green_x_red_y();
+void blinking_yellow_x_red_y();
 void init();
 void init_time();
 

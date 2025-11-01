@@ -6,8 +6,9 @@ led7_segment.c:84:6:displaySetting_Y	16	static
 led7_segment.c:105:6:displaySetting_X	16	static
 led7_segment.c:128:6:display_7led	16	static
 led7_segment.c:132:6:timer9_for_led_7	8	static
-led7_segment.c:140:6:display_set_X	16	static
-led7_segment.c:144:6:display_set_Y	16	static
-led7_segment.c:150:9:display_get_X	4	static
-led7_segment.c:151:9:display_get_Y	4	static
-led7_segment.c:153:6:seg_scan_tick	16	static
+led7_segment.c:140:6:set_counter_for_traffic_light	16	static
+led7_segment.c:145:6:display_set_X	16	static
+led7_segment.c:149:6:display_set_Y	16	static
+led7_segment.c:155:9:display_get_X	4	static
+led7_segment.c:156:9:display_get_Y	4	static
+led7_segment.c:158:6:seg_scan_tick	16	static

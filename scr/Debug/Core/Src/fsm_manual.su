@@ -1,0 +1,2 @@
+fsm_manual.c:10:6:manual_inc_time_xy	8	static
+fsm_manual.c:49:6:fsm_manual_run	8	static
