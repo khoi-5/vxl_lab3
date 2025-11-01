@@ -108,6 +108,7 @@ int main(void)
     /* USER CODE BEGIN 3 */
 	  fsm_auto_run();
 	  fsm_manual_run();
+	  fsm_control_run();
 	  timer9_for_led_7();
 
   }

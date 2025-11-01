@@ -9,21 +9,30 @@
 #include "fsm_auto.h"
 
 
-void button0_to_change_to_manual(){
-	if (isButton1Pressed(0) == 1) {
-		init();
-		status = MAN_RED_GREEN;
-		setTimer(0, 100000);
-		setTimer(2, 250);
-	}
+void button0_to_change_to_manual(void){
+    if (isButton1Pressed(0) == 1) {
+        init();
+        manual_init_new_from_current();          // copy time -> time_new
+        status = MAN_RED_X;                      // bắt đầu ở RED_X
+        setTimer(2, 250);                        // nhịp blink 250ms
+        display_mode_edit_x();
+    }
 }
 
+void button2_to_change_to_control(){
+    if (isButton1Pressed(2) == 1) {
+        status = SET_RED_GREEN;
+        setTimer(2, 250);
+        setTimer(9, SCAN);
+        display_mode_set_off();
+    }
+}
 
 void fsm_auto_run(void) {
     switch (status) {
     case INIT:
-        init();
         setTimer(9, SCAN);
+        display_mode_auto();
 
         status = RED_GREEN;
         setTimer(0, 1000);
@@ -48,6 +57,7 @@ void fsm_auto_run(void) {
             set_counter_for_traffic_light(time_yellow_y, time_yellow_y);
         }
         button0_to_change_to_manual();
+        button2_to_change_to_control();
         break;
 
     case RED_YELLOW:
@@ -67,6 +77,7 @@ void fsm_auto_run(void) {
 
         }
         button0_to_change_to_manual();
+        button2_to_change_to_control();
         break;
 
     case GREEN_RED:
@@ -86,6 +97,7 @@ void fsm_auto_run(void) {
 
         }
         button0_to_change_to_manual();
+        button2_to_change_to_control();
         break;
 
     case YELLOW_RED:
@@ -104,11 +116,13 @@ void fsm_auto_run(void) {
             set_counter_for_traffic_light(time_red_x, time_green_y);
         }
         button0_to_change_to_manual();
+        button2_to_change_to_control();
         break;
 
     default:
         break;
     }
 }
+
 
 

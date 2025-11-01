@@ -1,2 +1,7 @@
-fsm_manual.c:10:6:manual_inc_time_xy	8	static
-fsm_manual.c:49:6:fsm_manual_run	8	static
+fsm_manual.c:12:5:inc99	16	static
+fsm_manual.c:15:6:manual_init_new_from_current	4	static
+fsm_manual.c:27:6:manual_handle_button1_inc_new	8	static
+fsm_manual.c:75:6:manual_handle_button2_commit	8	static
+fsm_manual.c:98:6:manual_handle_button0_next_state	8	static
+fsm_manual.c:124:6:timer2	8	static
+fsm_manual.c:142:6:fsm_manual_run	8	static

@@ -19,9 +19,17 @@
 
 //cac file.h fsm
 #include "fsm_auto.h"
-
+#include "fsm_maunal.h"
+#include"fsm_control.h"
 //SCAN SPEED
 #define SCAN 100
+#define INIT_RED_X 5
+#define INIT_YELLOW_X 3
+#define INIT_GREEN_X 2
+#define INIT_RED_Y 5
+#define INIT_YELLOW_Y 3
+#define INIT_GREEN_Y 2
+
 
 //che do mac dinh
 #define INIT 1
@@ -30,20 +38,22 @@
 #define GREEN_RED 4
 #define YELLOW_RED 5
 
-#define MAN_RED 1200
-#define MAN_GREEN 1300
-#define MAN_YELLOW 1400
+//#define MAN_RED 1200
+//#define MAN_GREEN 1300
+//#define MAN_YELLOW 1400
 
-#define MAN_RED_GREEN 12
-#define MAN_RED_YELLOW 13
-#define MAN_GREEN_RED 14
-#define MAN_YELLOW_RED 15
+#define MAN_INIT 11
+#define MAN_RED_X 12
+#define MAN_RED_Y 13
+#define MAN_GREEN_X 14
+#define MAN_GREEN_Y 15
+#define MAN_YELLOW_X 16
+#define MAN_YELLOW_Y 17
 
-#define SET_INIT 22
-#define SET_RED 23
-#define SET_GREEN 24
-#define SET_YELLOW_MAIN 25
-#define SET_YELLOW 26
+#define SET_RED_GREEN   22
+#define SET_RED_YELLOW  23
+#define SET_GREEN_RED   24
+#define SET_YELLOW_RED  25
 
 extern int status;
 extern int count;

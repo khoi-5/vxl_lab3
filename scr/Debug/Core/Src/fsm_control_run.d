@@ -1,5 +1,5 @@
-Core/Src/fsm_auto.o: ../Core/Src/fsm_auto.c ../Core/Inc/fsm_auto.h \
- ../Core/Inc/global.h ../Core/Inc/main.h \
+Core/Src/fsm_control_run.o: ../Core/Src/fsm_control_run.c \
+ ../Core/Inc/fsm_control.h ../Core/Inc/global.h ../Core/Inc/main.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
  ../Core/Inc/stm32f1xx_hal_conf.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h \
@@ -29,7 +29,7 @@ Core/Src/fsm_auto.o: ../Core/Src/fsm_auto.c ../Core/Inc/fsm_auto.h \
  ../Core/Inc/fsm_auto.h ../Core/Inc/fsm_maunal.h \
  ../Core/Inc/fsm_control.h
 
-../Core/Inc/fsm_auto.h:
+../Core/Inc/fsm_control.h:
 
 ../Core/Inc/global.h:
 

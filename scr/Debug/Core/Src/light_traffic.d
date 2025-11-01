@@ -26,7 +26,8 @@ Core/Src/light_traffic.o: ../Core/Src/light_traffic.c \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
  ../Core/Inc/software_timer.h ../Core/Inc/button.h \
  ../Core/Inc/light_traffic.h ../Core/Inc/led7_segment.h \
- ../Core/Inc/fsm_auto.h
+ ../Core/Inc/fsm_auto.h ../Core/Inc/fsm_maunal.h \
+ ../Core/Inc/fsm_control.h
 
 ../Core/Inc/light_traffic.h:
 
@@ -91,3 +92,7 @@ Core/Src/light_traffic.o: ../Core/Src/light_traffic.c \
 ../Core/Inc/led7_segment.h:
 
 ../Core/Inc/fsm_auto.h:
+
+../Core/Inc/fsm_maunal.h:
+
+../Core/Inc/fsm_control.h:

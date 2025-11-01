@@ -7,98 +7,176 @@
 
 
 #include "fsm_maunal.h"
-void manual_inc_time_xy(void){
-    if (isButton1Pressed(1) != 1) return; // one-shot edge
+
+
+int inc99(int v){ v++; if (v > 99) v = 1; return v; }
+
+// Copy time thật -> *_new khi vào MANUAL
+void manual_init_new_from_current(void){
+    time_red_new_x    = time_red_x;
+    time_green_new_x  = time_green_x;
+    time_yellow_new_x = time_yellow_x;
+
+    time_red_new_y    = time_red_y;
+    time_green_new_y  = time_green_y;
+    time_yellow_new_y = time_yellow_y;
+}
+
+
+
+void manual_handle_button1_inc_new(void){
+    if (!isButton1Pressed(1)) return;
 
     switch (status) {
-    case MAN_RED_GREEN:
-        // X: RED,  Y: GREEN
-        time_red_x   = inc99(time_red_x);
-        time_green_y = inc99(time_green_y);
-        set_counter_for_traffic_light(time_red_x, time_green_y);
+    // --- Đang chỉnh trục X ---
+    case MAN_RED_X:
+        // Tăng Đỏ X <-> Tăng Xanh Y (Logic cơ bản)
+        time_red_new_x    = inc99(time_red_new_x);
+        time_green_new_y  = inc99(time_green_new_y);
         break;
 
-    case MAN_RED_YELLOW:
-        // X: RED,  Y: YELLOW
-        time_red_x     = inc99(time_red_x);
-        time_yellow_y  = inc99(time_yellow_y);
-        set_counter_for_traffic_light(time_red_x, time_yellow_y);
+    case MAN_GREEN_X:
+        // Tăng Xanh X <-> Tăng Đỏ Y
+        time_green_new_x  = inc99(time_green_new_x);
+        time_red_new_y    = inc99(time_red_new_y);
         break;
 
-    case MAN_GREEN_RED:
-        // X: GREEN, Y: RED
-        time_green_x = inc99(time_green_x);
-        time_red_y   = inc99(time_red_y);
-        set_counter_for_traffic_light(time_green_x, time_red_y);
+    case MAN_YELLOW_X:
+        // Tăng Vàng X <-> Tăng Đỏ Y (Vàng X thuộc chu kỳ Xanh/Vàng X, đối diện với Đỏ Y)
+        time_yellow_new_x = inc99(time_yellow_new_x);
+        time_red_new_y    = inc99(time_red_new_y);
         break;
 
-    case MAN_YELLOW_RED:
-        // X: YELLOW, Y: RED
-        time_yellow_x = inc99(time_yellow_x);
-        time_red_y    = inc99(time_red_y);
-        set_counter_for_traffic_light(time_yellow_x, time_red_y);
+    // --- Đang chỉnh trục Y ---
+    case MAN_RED_Y:
+        // Tăng Đỏ Y <-> Tăng Xanh X
+        time_red_new_y    = inc99(time_red_new_y);
+        time_green_new_x  = inc99(time_green_new_x);
+        break;
+
+    case MAN_GREEN_Y:
+        // Tăng Xanh Y <-> Tăng Đỏ X
+        time_green_new_y  = inc99(time_green_new_y);
+        time_red_new_x    = inc99(time_red_new_x);
+        break;
+
+    case MAN_YELLOW_Y:
+        // Tăng Vàng Y <-> Tăng Đỏ X (Vàng Y thuộc chu kỳ Xanh/Vàng Y, đối diện với Đỏ X)
+        time_yellow_new_y = inc99(time_yellow_new_y);
+        time_red_new_x    = inc99(time_red_new_x);
         break;
 
     default:
         break;
     }
-    // Nếu bạn muốn lưu cấu hình mới để AUTO dùng ngay khi thoát MANUAL,
-    // thì không cần làm gì thêm — các biến time_* đã được cập nhật.
 }
 
-void fsm_manual_run(){
+// NÚT 2: commit *_new -> time_* thật theo state hiện tại
+void manual_handle_button2_commit(void){
+    if (!isButton1Pressed(2)) return;
     switch (status) {
+    case MAN_RED_X:     time_red_x    = time_red_new_x;   time_green_y  = time_green_new_y;  break;
+    case MAN_GREEN_X:   time_green_x  = time_green_new_x; time_red_y    = time_red_new_y;    break;
+    case MAN_YELLOW_X:  time_yellow_x = time_yellow_new_x;time_red_y    = time_red_new_y;    break;
+    case MAN_RED_Y:     time_red_y    = time_red_new_y;   time_green_x  = time_green_new_x;  break;
+    case MAN_GREEN_Y:   time_green_y  = time_green_new_y; time_red_x    = time_red_new_x;    break;
+    case MAN_YELLOW_Y:  time_yellow_y = time_yellow_new_y;time_red_x    = time_red_new_x;    break;
+    }
+}
+// Commit ngay lập tức cho state hiện tại (không cần nút)
+static inline void manual_commit_current_state_now(void){
+	time_red_x    = time_red_new_x;
+	time_green_x  = time_green_new_x;
+	time_yellow_x = time_yellow_new_x;
 
+	time_red_y    = time_red_new_y;
+	time_green_y  = time_green_new_y;
+	time_yellow_y = time_yellow_new_y;
+}
 
-    case MAN_RED_GREEN:
-		if (isButton1Pressed(0) == 1) {
-			init();
-			status = MAN_RED_YELLOW;
-		}
-        if (timer_flag[2]) {
-    		blinking_red_x_green_y();
-            setTimer(2, 250);
-        }
-        manual_inc_time_xy();
+// NÚT 0: chuyển state vòng 6; hết vòng -> về AUTO RED_GREEN
+void manual_handle_button0_next_state(void){
+    if (!isButton1Pressed(0)) return; // one-shot
+
+    init(); // clear LED trước khi đổi state
+
+    switch (status) {
+    case MAN_RED_X:     status = MAN_GREEN_X;   break;
+    case MAN_GREEN_X:   status = MAN_YELLOW_X;  break;
+    case MAN_YELLOW_X:  display_mode_edit_y();status = MAN_RED_Y;     break;
+    case MAN_RED_Y:     status = MAN_GREEN_Y;   break;
+    case MAN_GREEN_Y:   status = MAN_YELLOW_Y;  break;
+
+    case MAN_YELLOW_Y:
+        set_new_time();
+        status = RED_GREEN;
+        setTimer(0, 1000);
+        setTimer(1, time_green_y * 1000);
+        set_counter_for_traffic_light(time_red_x, time_green_y);
+        return;
+
+    default:
+        status = MAN_RED_X;
         break;
+    }
 
-    case MAN_RED_YELLOW:
-		if (isButton1Pressed(0) == 1) {
-			init();
-			status = MAN_GREEN_RED;
-		}
-        if (timer_flag[2]) {
-    		blinking_red_x_yellow_y();
-            setTimer(2, 250);
+}
+void timer2(){
+
+    if (timer_flag[2]) {
+        switch (status) {
+        case MAN_RED_X:     blinking_red_x();     break;
+        case MAN_GREEN_X:   blinking_green_x();   break;
+        case MAN_YELLOW_X:  blinking_yellow_x();  break;
+
+        case MAN_RED_Y:     blinking_red_y();     break;
+        case MAN_GREEN_Y:   blinking_green_y();   break;
+        case MAN_YELLOW_Y:  blinking_yellow_y();  break;
         }
-        manual_inc_time_xy();
-        break;
+        setTimer(2, 250);
+    }
 
+}
 
-    case MAN_GREEN_RED:
-		if (isButton1Pressed(0) == 1) {
-			init();
-			status = MAN_YELLOW_RED;
-		}
-        if (timer_flag[2]) {
-    		blinking_green_x_red_y();
-            setTimer(2, 250);
-        }
-        manual_inc_time_xy();
-        break;
-
-
-    case MAN_YELLOW_RED:
-		if (isButton1Pressed(0) == 1) {
-			init();
-			status = INIT;
-		}
-        if (timer_flag[2]) {
-    		blinking_yellow_x_red_y();
-            setTimer(2, 250);
-        }
-        manual_inc_time_xy();
-        break;
+// Vòng lặp MANUAL
+void fsm_manual_run(void){
+    switch (status) {
+    case MAN_RED_X:
+        manual_handle_button0_next_state();
+        manual_handle_button1_inc_new();
+        manual_handle_button2_commit();
+        timer2();
+    	break;
+    case MAN_GREEN_X:
+        manual_handle_button0_next_state();
+        manual_handle_button1_inc_new();
+        manual_handle_button2_commit();
+        timer2();
+    	break;
+    case MAN_YELLOW_X:
+        manual_handle_button0_next_state();
+        manual_handle_button1_inc_new();
+        manual_handle_button2_commit();
+        timer2();
+    	break;
+    case MAN_RED_Y:
+        manual_handle_button0_next_state();
+        manual_handle_button1_inc_new();
+        manual_handle_button2_commit();
+        timer2();
+    	break;
+    case MAN_GREEN_Y:
+        manual_handle_button0_next_state();
+        manual_handle_button1_inc_new();
+        manual_handle_button2_commit();
+        timer2();
+    	break;
+    case MAN_YELLOW_Y:
+        manual_handle_button0_next_state();
+        manual_handle_button1_inc_new();
+        manual_handle_button2_commit();
+        timer2();
+    	break;
 
 
 

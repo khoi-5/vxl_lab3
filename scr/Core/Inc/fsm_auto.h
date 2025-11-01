@@ -13,5 +13,6 @@
 void fsm_auto_run();
 
 void button0_to_change_to_manual();
+void button2_to_change_to_control();
 
 #endif /* INC_FSM_AUTO_H_ */

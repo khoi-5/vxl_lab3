@@ -40,4 +40,11 @@ uint8_t display_get_X(void);
 uint8_t display_get_Y(void);
 void seg_scan_tick();
 
+void off_7SEG_X(void);
+void off_7SEG_Y(void);
+void display_mode_auto(void);
+void display_mode_edit_x(void);
+void display_mode_edit_y(void);
+void display_mode_set_off(void);
+
 #endif /* INC_LED7_SEGMENT_H_ */
