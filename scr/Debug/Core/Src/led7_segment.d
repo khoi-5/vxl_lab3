@@ -27,7 +27,7 @@ Core/Src/led7_segment.o: ../Core/Src/led7_segment.c \
  ../Core/Inc/software_timer.h ../Core/Inc/button.h \
  ../Core/Inc/light_traffic.h ../Core/Inc/led7_segment.h \
  ../Core/Inc/fsm_auto.h ../Core/Inc/fsm_maunal.h \
- ../Core/Inc/fsm_control.h ../Core/Inc/global.h
+ ../Core/Inc/fsm_control.h
 
 ../Core/Inc/led7_segment.h:
 
@@ -96,5 +96,3 @@ Core/Src/led7_segment.o: ../Core/Src/led7_segment.c \
 ../Core/Inc/fsm_maunal.h:
 
 ../Core/Inc/fsm_control.h:
-
-../Core/Inc/global.h:

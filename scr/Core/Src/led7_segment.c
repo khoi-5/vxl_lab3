@@ -6,7 +6,6 @@
  */
 
 #include "led7_segment.h"
-#include"global.h"
 uint8_t enable_disp_x = 1;  // cho phép hiển thị cụm X
 uint8_t enable_disp_y = 1;  // cho phép hiển thị cụm Y
 void off_7SEG_X(void){
@@ -36,7 +35,6 @@ void display_mode_set_off(void){
     enable_disp_y = 0;
     off_7SEG_X();
     off_7SEG_Y();
-
 }
 
 GPIO_TypeDef *SEG_PORTS[14] = {
@@ -71,7 +69,7 @@ GPIO_PinState LEDS_7SEG_state[10][7] = {
 // ----------------------
 void set_7SEG_X_left(const GPIO_PinState *L_LEDS_X_state) {
     // Bật bên trái (EN0), tắt bên phải (EN1)
-    HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, SET);
+    HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, RESET);
     HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, SET);
     for (int i = 0; i < 7; i++) {
         HAL_GPIO_WritePin(SEG_PORTS[i], SEG_PINS[i], L_LEDS_X_state[i]);
@@ -81,7 +79,7 @@ void set_7SEG_X_left(const GPIO_PinState *L_LEDS_X_state) {
 void set_7SEG_X(const GPIO_PinState *L_LEDS_X_state) {
     // Bật bên phải (EN1), tắt bên trái (EN0)
     HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, SET);
-    HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, SET);
+    HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, RESET);
     for (int i = 0; i < 7; i++) {
         HAL_GPIO_WritePin(SEG_PORTS[i], SEG_PINS[i], L_LEDS_X_state[i]);
     }
@@ -92,7 +90,7 @@ void set_7SEG_X(const GPIO_PinState *L_LEDS_X_state) {
 // ----------------------
 void set_7SEG_Y_left(const GPIO_PinState *L_LEDS_Y_state) {
     // Bật bên trái (EN2), tắt bên phải (EN3)
-    HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);
+    HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, RESET);
     HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, SET);
     for (int i = 0; i < 7; i++) {
         HAL_GPIO_WritePin(SEG_PORTS[i + 7], SEG_PINS[i + 7], L_LEDS_Y_state[i]);
@@ -102,7 +100,7 @@ void set_7SEG_Y_left(const GPIO_PinState *L_LEDS_Y_state) {
 void set_7SEG_Y(const GPIO_PinState *L_LEDS_Y_state) {
     // Bật bên phải (EN3), tắt bên trái (EN2)
     HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);
-    HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, SET);
+    HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, RESET);
     for (int i = 0; i < 7; i++) {
         HAL_GPIO_WritePin(SEG_PORTS[i + 7], SEG_PINS[i + 7], L_LEDS_Y_state[i]);
     }
