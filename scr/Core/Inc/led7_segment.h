@@ -29,8 +29,9 @@ void set_7SEG_Y(const GPIO_PinState *L_LEDS_Y_state);
 void set_7SEG_Y_left(const GPIO_PinState *L_LEDS_Y_state);
 void displaySetting_Y(int time);
 void displaySetting_X(int time);
-void display_7led(int time1, int time2);
 void timer9_for_led_7();
+void timer9_for_led_7x();
+void timer9_for_led_7y();
 void set_counter_for_traffic_light(int time1, int time2);
 
 
@@ -38,7 +39,6 @@ void display_set_X(uint8_t v);
 void display_set_Y(uint8_t v);
 uint8_t display_get_X(void);
 uint8_t display_get_Y(void);
-void seg_scan_tick();
 
 void off_7SEG_X(void);
 void off_7SEG_Y(void);

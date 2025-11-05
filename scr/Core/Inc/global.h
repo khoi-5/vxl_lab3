@@ -9,6 +9,7 @@
 #define INC_GLOBAL_H_
 
 //cac file.h co ban
+#include <fsm_manual.h>
 #include "main.h"
 #include "software_timer.h"
 #include "button.h"
@@ -19,8 +20,7 @@
 
 //cac file.h fsm
 #include "fsm_auto.h"
-#include "fsm_maunal.h"
-#include"fsm_control.h"
+#include "fsm_config.h"
 //SCAN SPEED
 #define SCAN 100
 #define INIT_RED_X 5
@@ -43,17 +43,17 @@
 //#define MAN_YELLOW 1400
 
 #define MAN_INIT 11
-#define MAN_RED_X 12
-#define MAN_RED_Y 13
-#define MAN_GREEN_X 14
-#define MAN_GREEN_Y 15
-#define MAN_YELLOW_X 16
-#define MAN_YELLOW_Y 17
+#define CON_RED_X 12
+#define CON_RED_Y 13
+#define CON_GREEN_X 14
+#define CON_GREEN_Y 15
+#define CON_YELLOW_X 16
+#define CON_YELLOW_Y 17
 
-#define SET_RED_GREEN   22
-#define SET_RED_YELLOW  23
-#define SET_GREEN_RED   24
-#define SET_YELLOW_RED  25
+#define MAN_RED_GREEN   22
+#define MAN_RED_YELLOW  23
+#define MAN_GREEN_RED   24
+#define MAN_YELLOW_RED  25
 
 extern int status;
 extern int count;

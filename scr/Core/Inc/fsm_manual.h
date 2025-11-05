@@ -8,6 +8,6 @@
 #ifndef INC_FSM_CONTROL_H_
 #define INC_FSM_CONTROL_H_
 #include"global.h"
-void fsm_control_run(void);
+void fsm_manual_run(void);
 
 #endif /* INC_FSM_CONTROL_H_ */
